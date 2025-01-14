@@ -10,10 +10,22 @@ fn display(s: &mut String) {
 fn main()
 {
     // felix has the ownership of the string, flaggued as mutable... 
-    let mut felix = String::from("A cat");
+    let mut s = String::from("A cat");
 
-    display(&mut felix);
+    // create a local context
+    {
+        // two immutable borrow, valid
+        let borrow = &s;
+        let borrow2 = &s;
+        println!("{},{}", borrow, borrow2);
+        
+        // not possible to do:
+        // let mborrow = &mut s; 
+    }
+
+
+    display(&mut s);
 
     // The following does not work because 
-    println!("Tom {}!\n", felix);
+    println!("Tom {}!\n", s);
 }
