@@ -7,6 +7,41 @@ fn square_to_char(s: &Square) -> char
     }
 }
 
+/// Adding a behavior ... 
+// std::string ConvertToString(auto& object);
+// std::string ConvertToString(Square& object){
+//      blabla
+// }
+// 
+trait ConvertToString {
+    // Returns a string representation of self
+    fn to_string(&self) -> String;
+}
+
+impl ConvertToString for Square{
+    fn to_string(&self) -> String 
+    {
+        match self {
+            Square::Empty => String::from("."),
+            Square::Cross => String::from("X"),
+            Square::Circle => String::from("O"),            
+        }
+    }
+}
+
+impl ConvertToString for Board {
+    fn to_string(&self) -> String 
+    {
+        let mut out = String::new();
+        for row in 0..3 {
+            out.push_str(format!("{} {} {}", 
+            self.board[row*3].to_string(),
+            self.board[row*3].to_string(),
+            self.board[row*3].to_string()));    
+        }
+        out;
+    }
+}
 
 enum Square {
     Empty, Cross, Circle    
