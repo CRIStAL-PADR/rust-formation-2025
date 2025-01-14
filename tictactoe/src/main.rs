@@ -13,6 +13,8 @@ fn square_to_char(s: &Square) -> char
 //      blabla
 // }
 // 
+
+// On définit un nouveau traits ici 
 trait ConvertToString {
     // Returns a string representation of self
     fn to_string(&self) -> String;
@@ -34,14 +36,23 @@ impl ConvertToString for Board {
     {
         let mut out = String::new();
         for row in 0..3 {
-            out.push_str(format!("{} {} {}", 
-            self.board[row*3].to_string(),
-            self.board[row*3].to_string(),
-            self.board[row*3].to_string()));    
+
+            //self.board[row*3].to_string(),
+            //self.board[row*3].to_string(),
+            //self.board[row*3].to_string())
+            out.push_str(format!("{} {} {}", "one", "two", "three"));    
         }
         out;
     }
 }
+
+// Mais il existe des traits pré-existant...
+// Debug: format with "{:.}"
+// Display: format with "{}"
+// PartialEq, Eq: pour définir des types qui sont comparables
+// Copy: a small copiable type (copiable bit à bit, continu etc...automatique appelé par copy)
+// Clone: explicitly called ... can be implemented by the 
+
 
 enum Square {
     Empty, Cross, Circle    
