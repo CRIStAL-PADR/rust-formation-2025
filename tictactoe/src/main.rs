@@ -81,6 +81,16 @@ impl Board {
     }
 }
 
+impl std::fmt::Display for Square {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Square::Empty => write!(f, "."),
+            Square::Cross => write!(f, "X"),
+            Square::Circle => write!(f, "O"),
+        }
+    }
+}
+
 fn main() {
     let board = Board::new();
 
