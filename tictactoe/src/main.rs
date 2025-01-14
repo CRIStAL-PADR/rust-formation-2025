@@ -1,17 +1,9 @@
-// Closure & lambda
-fn main(){
-    let x = String::from("Hi");
-    let y = String::from("Hi2");
+// Iterators
+pub trait Iterator {
+    type Item;
+    fn next(&mut self) -> Option<Self::Item>;
+}
 
-    let hi = || {
-        // closure by borrow 
-        println!("{}", x)
-    };
-
-    let hi2 = move || {
-        // string's ownership transfered to the closure (moved) 
-        println!("{}", y)
-    };
-    hi();
-    hi2();
+fn main(){    
+    // mpa, filtermap, fold, foreach, ... 
 }
