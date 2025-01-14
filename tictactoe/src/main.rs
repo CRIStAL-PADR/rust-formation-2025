@@ -1,25 +1,27 @@
-// Example d'une fonction générique 
-fn take_and_give_back<T>(value: T) -> T {
-    value
+// Gestion d'erreur ! 
+
+fn failing_function() -> Result<u32, String> 
+{
+    Err(String::from("Im' failing"))
 }
 
-// Example d'une fonction générique avec une contrainte... 
-fn generic_print<T: std::fmt::Display>(value: T)
-// une contrainte sur un type générique 
+fn propagating_function() -> Result<u32, String>
 {
-    println!("{}", value);
-}
-
-fn generic<F,G,H>(v1: F, v2: G) -> H
-where F: std::ops::Add<G, Output = H> + std::fmt::Display,  // F doit s'afficher et avoir une opération d'addition entre F et G retournan H comme type
-      G: std::fmt::Display // G doit s'afficher 
-{
-    println!("{} + {}",v1,v2);
-    v1 + v2
+    // Il y a un opérateur ? sur les results
+    let v= failing_function()?;
+    Ok(v)
 }
 
 fn main(){
-    let x= 2;
-    let y = 3;
-    println!("{}", generic(x,y))
+    match failing_function(){
+        Ok(v) => println!("OK"),
+        Err(e) => println!("OK")
+    }
+
+    let vv = match failing_function(){
+        Ok(v) => v,
+        Err(e) => return Err(ErrorType::from(e))
+    };
+
+
 }
