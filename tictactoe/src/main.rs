@@ -1,4 +1,4 @@
-fn square_to_char(s: Square) -> char
+fn square_to_char(s: &Square) -> char
 {
     match s {
         Square::Empty => '.',
@@ -7,16 +7,6 @@ fn square_to_char(s: Square) -> char
     }
 }
 
-fn display(board: Board)
-{
-    for row in 0..3
-    {
-        println!(" {} | {} | {} ", 
-            square_to_char(board[row*3+0]), 
-            square_to_char(board[row*3+0]), 
-            square_to_char(board[row*3+0]));
-    }
-}
 
 enum Square {
     Empty, Cross, Circle    
@@ -34,14 +24,21 @@ impl Board {
     }
 
     fn display(&self) {
-        todo!();
+        for row in 0..3
+        {
+            println!(" {} | {} | {} ", 
+                square_to_char(&self.board[row*3+0]), 
+                square_to_char(&self.board[row*3+1]), 
+                square_to_char(&self.board[row*3+2]));
+            println!("--------------")
+        }
     }
 }
 
 fn main() {
     let board = Board::new();
 
-    display(board);
+    board.display();
 }
 
 
