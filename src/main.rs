@@ -1,11 +1,13 @@
 fn main()
 {
-    let first_name = "Damien";
-    let last_name = "Marchal";
+    // felix has the ownership of the string
+    let felix = String::from("A cat");
 
-    // Le ! signifie que ce qui précède est une macro. 
-    // c'est une opération sur l'AST (et pas sur le texte en entrée) 
-    // pour avoir des nombre d'arguments variable il faut passer par une macro
-    // autrement lest fonctions ont un nombre fini de paramètres 
-    println!("Hello world, {} {}!\n", first_name, last_name);
+    // tom has the ownership of the string, felix doesn't have anymore
+    let tom = felix;
+
+    println!("Tom {}!\n", tom);
+
+    // The following line is not working. 
+    //println!("Felix {}!\n", felix);
 }
