@@ -1,13 +1,25 @@
-fn display(board: [char; 9])
+fn square_to_char(s: Square) -> char
 {
-    for i in 0..3
+    match s {
+        Square::Empty => '.',
+        Square::Cross => '+',
+        Square::Circle => 'O'
+    }
+}
+
+fn display(board: Board)
+{
+    for row in 0..3
     {
-        println!(" {}", board[i]);
+        println!(" {} | {} | {} ", 
+            square_to_char(board[row*3+0]), 
+            square_to_char(board[row*3+0]), 
+            square_to_char(board[row*3+0]));
     }
 }
 
 enum Square {
-    
+    Empty, Cross, Circle    
 }
 
 struct Board {
@@ -27,7 +39,11 @@ impl Board {
 }
 
 fn main() {
-    let board = ['.'; 9]; // un tableau de neuf cases
+    let board = Board::new();
 
     display(board);
 }
+
+
+
+
