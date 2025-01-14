@@ -1,27 +1,17 @@
-// Gestion d'erreur ! 
-
-fn failing_function() -> Result<u32, String> 
-{
-    Err(String::from("Im' failing"))
-}
-
-fn propagating_function() -> Result<u32, String>
-{
-    // Il y a un opérateur ? sur les results
-    let v= failing_function()?;
-    Ok(v)
-}
-
+// Closure & lambda
 fn main(){
-    match failing_function(){
-        Ok(v) => println!("OK"),
-        Err(e) => println!("OK")
-    }
+    let x = String::from("Hi");
+    let y = String::from("Hi2");
 
-    let vv = match failing_function(){
-        Ok(v) => v,
-        Err(e) => return Err(ErrorType::from(e))
+    let hi = || {
+        // closure by borrow 
+        println!("{}", x)
     };
 
-
+    let hi2 = move || {
+        // string's ownership transfered to the closure (moved) 
+        println!("{}", y)
+    };
+    hi();
+    hi2();
 }
